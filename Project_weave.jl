@@ -224,3 +224,11 @@ end
 
 k1,s1 = solve_jump_version(Data, getOptimWeights)
 k2,s2 = solve_jump_version(Data, getOptimWeights2)
+
+
+Plots.plot(s1, title = "Savings rate over time period T", xlab = "Time", ylab = "Savings rate")
+Plots.plot!(s2)
+
+Plots.plot(k1, title = "Capital over time period T", xlab = "Time", ylab = "Savings rate")
+
+Plots.plot!(k2)
