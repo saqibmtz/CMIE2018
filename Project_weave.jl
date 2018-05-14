@@ -122,7 +122,7 @@ npf = 10000
 mean1,sd1 = generate_mean_sd(Data,npf)
 
 #+ term = true
-scatter(sd1, mean1, xlabel = "sd",markersize = 0.2,markeralpha = 0.6)
+Plots.scatter(sd1, mean1, title= "Means and Standard deviation of returns of randomly generated portfolios",xlabel = "standard deviation",ylab ="mean", markersize = 0.2,markeralpha = 0.6)
 #+
 
 #' #Getting Optimum Weights
@@ -178,8 +178,8 @@ meanReturn,SDReturn = portfolio_return(Data,optimWeights)
 scatter!([SDReturn],[meanReturn],markersize = 5, markercolor = :red)
 
 #' Getting optimal weights as a series of Time. 
-#weights_plot1 = [getOptimWeights(Data[1:t,:]) for t=2:T]
-#weights_plot2 = [getOptimWeights2(Data[1:t,:]) for t=2:T]
+weights_plot1 = [getOptimWeights(Data[1:t,:]) for t=2:T]
+weights_plot2 = [getOptimWeights2(Data[1:t,:]) for t=2:T]
 
 #' The returned objects are not easily plotable. Redefining them for plots
 
@@ -194,8 +194,8 @@ for t=1:T-1
     
 end
 #+ term = true
-plot(w_plot1)
-plot(w_plot2)
+Plots.plot(w_plot1,title = "Weights assigned to stocks for Variance Minimisation",xlab = "Time",ylab = "Weight")
+Plots.plot(w_plot2,title = "Weights assigned to stocks for Value Maximisation",xlab = "Time",ylab = "Weight")
 #+
 
 #' #Saving Rate
@@ -222,5 +222,5 @@ function solve_jump_version(Data, getOptimWeights)
     return k_solution, s_solution
 end
 
-#k1,s1 = solve_jump_version(Data, getOptimWeights)
-#k2,s2 = solve_jump_version(Data, getOptimWeights2)
+k1,s1 = solve_jump_version(Data, getOptimWeights)
+k2,s2 = solve_jump_version(Data, getOptimWeights2)
